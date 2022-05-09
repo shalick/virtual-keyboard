@@ -1,5 +1,6 @@
 const Keyboard = {
   elements: {
+    textarea: null,
     main: null,
     keysContainer: null,
     keys: [],
@@ -14,6 +15,9 @@ const Keyboard = {
     capsLock: false,
   },
   init() {
+    this.elements.textarea = document.createElement("textarea");
+    this.elements.textarea.classList.add("use-keyboard-input", "text");
+
     this.elements.main = document.createElement("div");
     this.elements.keysContainer = document.createElement("div");
 
@@ -25,6 +29,7 @@ const Keyboard = {
       this.elements.keysContainer.querySelectorAll(".keyboard-key");
 
     this.elements.main.appendChild(this.elements.keysContainer);
+    document.body.appendChild(this.elements.textarea);
     document.body.appendChild(this.elements.main);
 
     document.querySelectorAll(".use-keyboard-input").forEach((element) => {
@@ -38,6 +43,7 @@ const Keyboard = {
   _createKeys() {
     const fragment = document.createDocumentFragment();
     const keyLayout = [
+      "`",
       "1",
       "2",
       "3",
@@ -48,7 +54,10 @@ const Keyboard = {
       "8",
       "9",
       "0",
+      "-",
+      "=",
       "backspace",
+      "tab",
       "q",
       "w",
       "e",
@@ -59,6 +68,9 @@ const Keyboard = {
       "i",
       "o",
       "p",
+      "{",
+      "}",
+      "  ",
       "caps",
       "a",
       "s",
@@ -69,6 +81,8 @@ const Keyboard = {
       "j",
       "k",
       "l",
+      ";",
+      '"',
       "enter",
       "done",
       "z",
@@ -209,3 +223,16 @@ window.addEventListener("DOMContentLoaded", function () {
     }
   );
 });
+
+let keys = document.querySelectorAll('.keyboard-key');
+
+for(let i = 0; i < keys.length; i++) {
+  keys[i].setAttribute('keyname', keys[i].innerText);
+  keys[i].setAttribute('lowerCaseName', keys[i].innerText.toLowerCase())
+}
+console.log(keys)
+
+window.addEventListener('keydown', (e) => {
+  console.log(e.key)
+  console.log('he')
+})
