@@ -1,3 +1,10 @@
+let container = document.createElement("div");
+container.classList.add("container");
+document.body.appendChild(container);
+let headline = document.createElement("h2");
+headline.innerText = "Virtual keyboard";
+container.appendChild(headline);
+
 const Keyboard = {
   elements: {
     textarea: null,
@@ -29,8 +36,8 @@ const Keyboard = {
       this.elements.keysContainer.querySelectorAll(".keyboard-key");
 
     this.elements.main.appendChild(this.elements.keysContainer);
-    document.body.appendChild(this.elements.textarea);
-    document.body.appendChild(this.elements.main);
+    container.appendChild(this.elements.textarea);
+    container.appendChild(this.elements.main);
 
     document.querySelectorAll(".use-keyboard-input").forEach((element) => {
       element.addEventListener("focus", () => {
@@ -70,7 +77,7 @@ const Keyboard = {
       "p",
       "{",
       "}",
-      "  ",
+      " \ ",
       "caps",
       "a",
       "s",
@@ -112,7 +119,7 @@ const Keyboard = {
 
       switch (key) {
         case "backspace":
-          keyElement.classList.add("keyboard-key-wide");
+          keyElement.classList.add("backspace-key");
           keyElement.innerHTML = createIconHTML("backspace");
 
           keyElement.addEventListener("click", () => {
@@ -123,8 +130,12 @@ const Keyboard = {
             this._triggerEvent("oninput");
           });
           break;
+        case "tab":
+          keyElement.classList.add("tab-key");
+          keyElement.innerHTML = createIconHTML("keyboard_tab");
+          break;
         case "caps":
-          keyElement.classList.add("keyboard-key-wide");
+          keyElement.classList.add("capslock-key");
           keyElement.innerHTML = createIconHTML("keyboard_capslock");
 
           keyElement.addEventListener("click", () => {
@@ -133,7 +144,7 @@ const Keyboard = {
           });
           break;
         case "enter":
-          keyElement.classList.add("keyboard-key-wide");
+          keyElement.classList.add("enter-key");
           keyElement.innerHTML = createIconHTML("keyboard_return");
 
           keyElement.addEventListener("click", () => {
@@ -224,15 +235,15 @@ window.addEventListener("DOMContentLoaded", function () {
   );
 });
 
-let keys = document.querySelectorAll('.keyboard-key');
+let keys = document.querySelectorAll(".keyboard-key");
 
-for(let i = 0; i < keys.length; i++) {
-  keys[i].setAttribute('keyname', keys[i].innerText);
-  keys[i].setAttribute('lowerCaseName', keys[i].innerText.toLowerCase())
+for (let i = 0; i < keys.length; i++) {
+  keys[i].setAttribute("keyname", keys[i].innerText);
+  keys[i].setAttribute("lowerCaseName", keys[i].innerText.toLowerCase());
 }
-console.log(keys)
+console.log(keys);
 
-window.addEventListener('keydown', (e) => {
-  console.log(e.key)
-  console.log('he')
-})
+window.addEventListener("keydown", (e) => {
+  console.log(e.key);
+  console.log("he");
+});
