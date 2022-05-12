@@ -2,6 +2,7 @@ let container = document.createElement("div");
 container.classList.add("container");
 document.body.appendChild(container);
 let headline = document.createElement("h2");
+headline.classList.add("title");
 headline.innerText = "Virtual keyboard";
 container.appendChild(headline);
 
