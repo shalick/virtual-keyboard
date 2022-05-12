@@ -55,14 +55,28 @@
 }
 
 .tab-key {
-  width: 90px;
+  width: 88px;
 }
+
+.slash-key {
+  width: 87px;
+}
+
 .capslock-key {
   width: 120px;
 }
 
 .enter-key {
   width: 120px;
+}
+
+.shift-key {
+  width: 120px;
+}
+
+.space-key {
+  max-width: 588px;
+  width: 100%;
 }
 
 .text {
@@ -86,17 +100,16 @@
 }
 
 .remove {
-  animation: keys_animation 0.5s forwards ;
+  animation: keys_animation 0.5s forwards;
 }
-
 
 @keyframes keys_animation {
   0% {
-      background-color: #333;
-      color: #fff;
+    background-color: #333;
+    color: #fff;
   }
   100% {
-      background-color: #fff;
-      color: #000;
+    background-color: #fff;
+    color: #000;
   }
 }
