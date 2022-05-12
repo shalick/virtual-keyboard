@@ -77,7 +77,7 @@ const Keyboard = {
       "p",
       "{",
       "}",
-      " \ ",
+      "  ",
       "caps",
       "a",
       "s",
@@ -222,6 +222,7 @@ const Keyboard = {
   },
 };
 
+let keys;
 window.addEventListener("DOMContentLoaded", function () {
   Keyboard.init();
   Keyboard.open(
@@ -233,17 +234,67 @@ window.addEventListener("DOMContentLoaded", function () {
       console.log("keyboard closed! finishing value: " + currentValue);
     }
   );
+
+  keys = document.querySelectorAll(".keyboard-key");
+  // console.log(keys);
+
+  for (let i = 0; i < keys.length; i++) {
+    keys[i].setAttribute("keyname", keys[i].innerText);
+    keys[i].setAttribute("lowerCaseName", keys[i].innerText.toLowerCase());
+    // console.log(keys[i].innerText);
+  }
 });
 
-let keys = document.querySelectorAll(".keyboard-key");
+window.addEventListener("keydown", function (e) {
+  for (let i = 0; i < keys.length; i++) {
+    if (
+      e.key == keys[i].getAttribute("keyname") ||
+      e.key == keys[i].getAttribute("lowerCaseName")
+    ) {
+      keys[i].classList.add("active");
 
-for (let i = 0; i < keys.length; i++) {
-  keys[i].setAttribute("keyname", keys[i].innerText);
-  keys[i].setAttribute("lowerCaseName", keys[i].innerText.toLowerCase());
-}
-console.log(keys);
+      console.log("hey", e.key);
+    }
+    if (e.code == "Space") {
+      spaceKey.classList.add("active");
+    }
+    if (e.code == "ShiftLeft") {
+      shift_right.classList.remove("active");
+    }
+    if (e.code == "ShiftRight") {
+      shift_left.classList.remove("active");
+    }
+    if (e.code == "CapsLock") {
+      caps_lock_key.classList.toggle("active");
+    }
+  }
+});
 
-window.addEventListener("keydown", (e) => {
-  console.log(e.key);
-  console.log("he");
+window.addEventListener("keyup", function (e) {
+  for (let i = 0; i < keys.length; i++) {
+    if (
+      e.key == keys[i].getAttribute("keyname") ||
+      e.key == keys[i].getAttribute("lowerCaseName")
+    ) {
+      keys[i].classList.remove("active");
+      keys[i].classList.add("remove");
+
+      console.log("ho", e.key);
+    }
+    if (e.code == "Space") {
+      spaceKey.classList.remove("active");
+      spaceKey.classList.add("remove");
+    }
+    if (e.code == "ShiftLeft") {
+      shift_right.classList.remove("active");
+      shift_right.classList.remove("remove");
+    }
+    if (e.code == "ShiftRight") {
+      shift_left.classList.remove("active");
+      shift_left.classList.remove("remove");
+    }
+    setTimeout(() => {
+      keys[i].classList.remove("remove");
+    }, 200);
+  }
 });
