@@ -77,7 +77,7 @@ const Keyboard = {
       "p",
       "{",
       "}",
-      "  ",
+      "slash",
       "caps",
       "a",
       "s",
@@ -91,7 +91,7 @@ const Keyboard = {
       ";",
       '"',
       "enter",
-      "done",
+      "shift",
       "z",
       "x",
       "c",
@@ -99,10 +99,19 @@ const Keyboard = {
       "b",
       "n",
       "m",
+      "<",
+      ">", 
       ",",
       ".",
-      "?",
+      // "?",
+      "shift",
+      "ctrl",
+      "win",
+      "alt",
       "space",
+      "alt",
+      "fn",
+      'ctrl'
     ];
 
     const createIconHTML = (icon_name) => {
@@ -134,6 +143,12 @@ const Keyboard = {
           keyElement.classList.add("tab-key");
           keyElement.innerHTML = createIconHTML("keyboard_tab");
           break;
+        case "slash":
+          keyElement.innerText = " \\ "
+          keyElement.classList.add("slash-key");
+          console.log('hu')
+          // keyElement.innerHTML = createIconHTML("keyboard_tab");
+          break;
         case "caps":
           keyElement.classList.add("capslock-key");
           keyElement.innerHTML = createIconHTML("keyboard_capslock");
@@ -153,7 +168,7 @@ const Keyboard = {
           });
           break;
         case "space":
-          keyElement.classList.add("keyboard-key-extra-wide");
+          keyElement.classList.add("space-key");
           keyElement.innerHTML = createIconHTML("space_bar");
 
           keyElement.addEventListener("click", () => {
@@ -161,14 +176,15 @@ const Keyboard = {
             this._triggerEvent("oninput");
           });
           break;
-        case "done":
-          keyElement.classList.add("keyboard-key-extra-wide");
-          keyElement.innerHTML = createIconHTML("check_circle");
+        case "shift":
+          keyElement.innerText = "shift"
+          keyElement.classList.add("shift-key");
+          // keyElement.innerHTML = createIconHTML("check_circle");
 
-          keyElement.addEventListener("click", () => {
-            this.close();
-            this._triggerEvent("onclose");
-          });
+          // keyElement.addEventListener("click", () => {
+          //   this.close();
+          //   this._triggerEvent("onclose");
+          // });
           break;
         default:
           keyElement.textContent = key.toLowerCase();
